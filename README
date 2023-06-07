@@ -1,0 +1,9 @@
+
+Compile (to run example):
+
+g++ -std=c++17 main.cc rng.cc -Wall -Wextra -Werror -O3 -DTHREAD_COUNT=8 -o rng
+
+Problems:
+    1. Untested.
+    2. Stack overflow possible when recursion is too deep.
+
