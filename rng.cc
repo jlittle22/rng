@@ -28,6 +28,9 @@ void consume_and_calculate_derivatives() {
   uint64_t process_me = 0;
   {
     std::lock_guard<std::mutex> guard(next_to_process_mutex);
+    if (next_to_process.empty() == true) {
+      return;
+    }
     process_me = next_to_process.front();
     next_to_process.pop();
   }
@@ -54,6 +57,7 @@ void consume_and_calculate_derivatives() {
         .values = derivative_values,
     };
   }
+  consume_and_calculate_derivatives();
 }
 }  // namespace
 
